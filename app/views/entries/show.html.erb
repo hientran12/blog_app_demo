@@ -1,0 +1,30 @@
+<% provide(:title, @entry.title) %>
+<div class="row">
+  <aside class="col-md-4">
+    <section class="entry_info">
+      <h1>
+        <%= image_tag @entry.picture.url if @entry.picture? %></br>
+        <%= @entry.title %>
+      </h1>
+    </section>
+  </aside>
+  <div class="col-md-8">
+    <h3><%= @entry.content%></h3>
+  </div>
+<div class="col-md-8">
+    <% if @entry.comments.any? %>
+      <h3>Comments (<%= @entry.comments.count %>)</h3>
+      <%= will_paginate @comments %>
+      <ol class="comments">
+        <%= render @comments %>
+      </ol>
+      <%= will_paginate @comments %>
+    <% end %>
+      </br>
+    <section class="comment_form">
+      <% if logged_in? %>
+      <%= render "comment_form" %>
+      <% end %>
+    </section>
+</div>
+</div>

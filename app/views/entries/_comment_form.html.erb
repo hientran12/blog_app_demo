@@ -1,0 +1,9 @@
+<%= form_for(@entry.comments.build , html: { multipart: true }) do |f| %>
+	<%= render 'shared/error_messages', object: f.object %>
+	<%= f.hidden_field :entry_id, value: @entry.id %>
+	<%= f.hidden_field :user_id, value: @entry.user.id %>
+	<div class="field">
+		<%= f.text_area :content, placeholder: "Write your comment..." %>
+	</div>
+	<%= f.submit "Post", class: "btn btn-primary" %>
+<% end %>
